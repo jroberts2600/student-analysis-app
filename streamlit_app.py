@@ -6,7 +6,7 @@ st.title("Student Grades Analysis")
 st.write("This app interacts with a FastAPI backend to analyze student grades.")
 
 # Define the FastAPI endpoint
-
+#api_url = "https://fastapi-backend-9n3a.onrender.com/query"
 api_url = "https://40fb-71-81-132-14.ngrok-free.app/query"
 
 # Create a form for user input
