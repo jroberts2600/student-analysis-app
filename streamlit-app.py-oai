@@ -1,0 +1,57 @@
+import streamlit as st
+import requests
+
+# Set up the Streamlit app
+st.set_page_config(page_title="Student Grades Analysis", page_icon=":bar_chart:", layout="centered")
+st.title("📊 Student Grades Analysis")
+st.write("This app interacts with a FastAPI backend to analyze student grades.")
+
+# Define the FastAPI endpoint
+api_url = "https://fastapi-backend-9n3a.onrender.com/query"
+
+# Add a sidebar for the OpenAI API key input
+st.sidebar.title("Settings")
+openai_api_key = st.sidebar.text_input("OpenAI API Key (Optional)", type="password")
+
+# Create a form for user input
+st.write("### Enter your query below:")
+query = st.text_input("Query")
+
+if st.button("Submit"):
+    if query:
+        # Prepare the payload for the request
+        payload = {"text": query}
+        headers = {}
+        
+        if openai_api_key:
+            headers["OpenAI-API-Key"] = openai_api_key
+        
+        # Make a POST request to the FastAPI backend
+        response = requests.post(api_url, json=payload, headers=headers)
+        
+        if response.status_code == 200:
+            result = response.json().get("result", "No result found")
+            st.write("### Response from the API:")
+            st.success(result)
+        else:
+            st.write("### Error:")
+            st.error(f"Status Code: {response.status_code}")
+    else:
+        st.warning("Please enter a query.")
+
+# Add some style to the app
+st.markdown("""
+<style>
+    .css-1d391kg { 
+        display: none;
+    }
+    .stButton button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+    }
+    .stTextInput > div > input {
+        font-size: 16px;
+    }
+</style>
+""", unsafe_allow_html=True)
