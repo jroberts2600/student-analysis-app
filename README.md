@@ -1,6 +1,6 @@
-# 🎓 Student Grades Analysis App
+# 🎓 Student Grades Analysis Streamlit App
 
-A Streamlit app for analyzing student grades with a FastAPI backend!
+This Streamlit application serves as the frontend for interacting with the FastAPI backend to analyze student grades. Users can input their queries and receive responses from the backend.
 
 
 ## Features
@@ -37,6 +37,10 @@ The app connects to a FastAPI backend. Update the `api_url` in `streamlit_app.py
 ```python
 api_url = "https://<render> or <ngrok>/query"
 ```
+## Google Colab
+
+You can also interact with the backend through Google Colab. Click the link below to open the Colab notebook:
+[Open in Google Colab](https://colab.research.google.com/drive/1vYXAJGlHQu9nC7Dyw9kgkZ_y2Khvacli?usp=sharing)
 
 ## Contributing
 
